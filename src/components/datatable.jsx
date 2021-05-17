@@ -9,6 +9,17 @@ const Datatable = ({ data }) => {
       <thead>
         <tr>{data[0] && columns.map((heading) => <th>{heading}</th>)}</tr>
       </thead>
+
+      <tbody>
+        //fill all the values in a row
+        {data.map((row) => (
+          <tr>
+            {columns.map((column) => (
+              <td>{row[column]}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 };
