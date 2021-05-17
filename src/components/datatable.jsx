@@ -11,7 +11,7 @@ const Datatable = ({ data }) => {
       </thead>
 
       <tbody>
-        //fill all the values in a row
+        {/* fill all the values in a row */}
         {data.map((row) => (
           <tr>
             {columns.map((column) => (
