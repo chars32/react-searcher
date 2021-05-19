@@ -30,16 +30,20 @@ const App = () => {
 
   const columns = data[0] && Object.keys(data[0]);
 
-  const algo = (column) => {
-    const checked = searchColumn.includes(column);
-    // setSearchColumn((prev) =>
-    //   checked ? prev.filter((sc) => sc !== column) : [...prev, column]
-    // );
+  const fillSearchColumn = (column) => {
+    const checked = searchColumn && searchColumn.includes(column);
     if (!checked) {
       setSearchColumn((prev) => [...prev, column]);
     }
     console.log(checked);
-    console.log(searchColumn);
+    // console.log(searchColumn);
+  };
+
+  const algo = (e) => {
+    const searchColumn_dif = searchColumn.filter(
+      (item) => item !== e.target.innerText
+    );
+    setSearchColumn(searchColumn_dif);
   };
 
   return (
@@ -53,8 +57,12 @@ const App = () => {
         <div>
           {columns &&
             columns.map((column) => (
-              <p onClick={() => algo(column)}>{column}</p>
+              <p onClick={() => fillSearchColumn(column)}>{column}</p>
             ))}
+        </div>
+        <div>
+          {searchColumn &&
+            searchColumn.map((column) => <p onClick={algo}>{column}</p>)}
         </div>
         {/* {columns &&
           columns.map((column) => (
