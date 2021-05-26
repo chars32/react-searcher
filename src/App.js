@@ -44,9 +44,19 @@ const App = () => {
     setSearchColumn(searchColumn_dif);
   };
 
+  const Styles = {
+    inputListContainer: {
+      display: "flex",
+      alignItems: "flex-end",
+      padding: "1rem",
+      position: "relative",
+      flexDirection: "column",
+    },
+  };
+
   return (
     <div className="App">
-      <div>
+      <div style={Styles.inputListContainer}>
         <input
           type="text"
           value={query}
@@ -55,20 +65,20 @@ const App = () => {
           }}
         />
         {query && (
-          <div>
-            {" "}
+          <div
+            style={{
+              backgroundColor: "white",
+              width: "11rem",
+              position: "absolute",
+              top: "2.3rem",
+            }}
+          >
             {columns &&
               columns.map((column) => (
                 <p onClick={() => fillSearchColumn(column)}>{column}</p>
               ))}
           </div>
         )}
-        {/* <div>
-          {columns &&
-            columns.map((column) => (
-              <p onClick={() => fillSearchColumn(column)}>{column}</p>
-            ))}
-        </div> */}
         <div>
           {searchColumn &&
             searchColumn.map((column) => (
