@@ -35,11 +35,9 @@ const App = () => {
     if (!checked) {
       setSearchColumn((prev) => [...prev, column]);
     }
-    console.log(checked);
-    // console.log(searchColumn);
   };
 
-  const algo = (e) => {
+  const clickFillTagSearch = (e) => {
     const searchColumn_dif = searchColumn.filter(
       (item) => item !== e.target.innerText
     );
@@ -52,36 +50,31 @@ const App = () => {
         <input
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value);
+          }}
         />
-        <div>
+        {query && (
+          <div>
+            {" "}
+            {columns &&
+              columns.map((column) => (
+                <p onClick={() => fillSearchColumn(column)}>{column}</p>
+              ))}
+          </div>
+        )}
+        {/* <div>
           {columns &&
             columns.map((column) => (
               <p onClick={() => fillSearchColumn(column)}>{column}</p>
             ))}
-        </div>
+        </div> */}
         <div>
           {searchColumn &&
-            searchColumn.map((column) => <p onClick={algo}>{column}</p>)}
+            searchColumn.map((column) => (
+              <p onClick={clickFillTagSearch}>{column}</p>
+            ))}
         </div>
-        {/* {columns &&
-          columns.map((column) => (
-            <div>
-              <div
-                // type="checkbox"
-                // checked={searchColumn.includes(column)}
-                // onChange={(e) => {
-                //   const checked = searchColumn.includes(column);
-                //   setSearchColumn((prev) =>
-                //     checked
-                //       ? prev.filter((sc) => sc !== column)
-                //       : [...prev, column]
-                //   );
-                // }}
-              />
-              {column}
-            </div>
-          ))} */}
       </div>
       <div>
         <Datatable data={search(data)} />
