@@ -16,13 +16,14 @@ const App = () => {
   // functions to search values in datatable
   const search = (rows) => {
     if (searchColumn.length > 0) {
-      return rows.filter((row) =>
+      const rowsFilter = rows.filter((row) =>
         searchColumn.some(
           (column) =>
             row[column].toString().toLowerCase().indexOf(query.toLowerCase()) >
             -1
         )
       );
+      return rowsFilter.length > 0 ? rowsFilter : data;
     } else {
       return data;
     }
@@ -50,7 +51,7 @@ const App = () => {
       alignItems: "flex-end",
       padding: "1rem",
       position: "relative",
-      flexDirection: "column",
+      flexDirection: "row-reverse",
     },
   };
 
