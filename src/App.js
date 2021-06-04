@@ -38,8 +38,10 @@ const App = () => {
     }
   };
 
-  const clickFillTagSearch = (column) => {
-    const searchColumn_dif = searchColumn.filter((item) => item !== column);
+  const clickFillTagSearch = (e) => {
+    const searchColumn_dif = searchColumn.filter(
+      (item) => item !== e.target.previousSibling.innerText
+    );
     setSearchColumn(searchColumn_dif);
   };
 
@@ -107,7 +109,9 @@ const App = () => {
             searchColumn.map((column) => (
               <div style={Styles.tagItems}>
                 <div style={Styles.tagName}>{column}</div>
-                <div style={Styles.tagClose}>X</div>
+                <div style={Styles.tagClose} onClick={clickFillTagSearch}>
+                  X
+                </div>
               </div>
             ))}
         </div>
