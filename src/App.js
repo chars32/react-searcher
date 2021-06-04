@@ -38,10 +38,8 @@ const App = () => {
     }
   };
 
-  const clickFillTagSearch = (e) => {
-    const searchColumn_dif = searchColumn.filter(
-      (item) => item !== e.target.innerText
-    );
+  const clickFillTagSearch = (column) => {
+    const searchColumn_dif = searchColumn.filter((item) => item !== column);
     setSearchColumn(searchColumn_dif);
   };
 
@@ -52,6 +50,30 @@ const App = () => {
       padding: "1rem",
       position: "relative",
       flexDirection: "row-reverse",
+    },
+    tagsContainer: {
+      padding: "0 1rem",
+      display: "flex",
+      alignItems: "center",
+    },
+    tagItems: {
+      color: "black",
+      overflow: "hidden",
+      display: "flex",
+      justifyContent: "space-around",
+      margin: "0 0.5rem",
+    },
+    tagName: {
+      backgroundColor: "lightBlue",
+      padding: "0 0.5rem",
+      textAlign: "center",
+      borderRadius: "15px 0 0 15px",
+    },
+    tagClose: {
+      backgroundColor: "lightGray",
+      padding: "0 0.5rem",
+      textAlign: "center",
+      borderRadius: "0 15px 15px 0",
     },
   };
 
@@ -80,10 +102,13 @@ const App = () => {
               ))}
           </div>
         )}
-        <div>
+        <div style={Styles.tagsContainer}>
           {searchColumn &&
             searchColumn.map((column) => (
-              <p onClick={clickFillTagSearch}>{column}</p>
+              <div style={Styles.tagItems}>
+                <div style={Styles.tagName}>{column}</div>
+                <div style={Styles.tagClose}>X</div>
+              </div>
             ))}
         </div>
       </div>
